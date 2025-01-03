@@ -24,7 +24,7 @@ function App() {
     setLoading(true);
     try {
       const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ApiKey}&units=imperial`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ApiKey}&units=metric`
       );
       if (!res.ok) {
         throw new Error(
@@ -111,16 +111,16 @@ function App() {
                 {currWeather?.weather[0]?.main}
               </p>
               <img
-                className="weather-icon"
-                src={`http://openweathermap.org/img/w/${currWeather?.weather[0]?.icon}.png`}
+                className="weather-icon -mt-6"
+                src={`src/assets/weather animated/${currWeather?.weather[0]?.icon}.svg`}
                 alt={currWeather?.weather[0]?.description}
-                width={100}
+                width={150}
               />
-              <p className="text-white">
+              <p className="text-white -mt-4">
                 {handleGetDate(currWeather?.timezone)}
               </p>
               <p className="font-bold text-white text-[1.5rem] text-center">
-                {currWeather?.main?.temp} C °
+                {Math.ceil(currWeather?.main?.temp)} C °
               </p>
               <p className="font-bold text-white text-[2.5rem] text-center">
                 {currWeather?.name}, {currWeather?.sys?.country}
